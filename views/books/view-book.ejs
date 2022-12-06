@@ -1,0 +1,61 @@
+<div class="row mx-md-2 justify-content-center">
+    <% if (typeof book !== 'undefined' && book !== null) {%> 
+        <nav aria-label="breadcrumb mx-2">
+            <ol class="breadcrumb ">
+                    <li class="breadcrumb-item"><a href="/api/v1/books">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><%= book.title %></li>
+                </ol>
+            </nav>
+        <div class="col-md-5 mb-2">
+            <nav aria-label="breadcrumb">
+            <img src="/img/cover/<%=book.coverImage %>" style="width: 100%;object-fit: contain;" class="img-fluid" alt="Cover Image" style="width:400px; height: 500px">
+        </div>
+        <div class="col-md-7">
+            
+            <h5>Title : <span><%= book.title %></span></h5>
+            <p>Author : <strong><%= book.author %></strong> </p>
+            <p><a href="/api/v1/books/catagories/" class="link">Catagory</a> : <%= book.catagory %></p>
+            <p>Language : <strong><%= book.language %></strong> </p>
+            <p>Publisher : <strong><%= book.publisher %></strong> </p>
+            <p>Published Date : <strong><%= book.publishedDate.toLocaleDateString() %></strong> </p>
+            <p>Page Number : <strong><%= book.pages %></strong> </p>
+            <p style="text-align: justify;">Summary : <%= book.summary %></p>
+            <p>Price : <strong><%= book.price %> </strong>Birr </p>
+
+            <% if( user._id.toString() == book.postedBy._id.toString()) {%>
+                <a class="btn btn-outline-info  mb-sm-2 mb-md-0" aria-current="page" href="/api/v1/books/edit/<%= book._id %>">Edit</a>
+                <form action="/api/v1/books/<%= book._id %>?_method=DELETE" method="post" class="d-inline">
+                    <button class="btn btn-outline-danger  mb-sm-2 mb-md-0">Delete</button>
+                </form>
+                <% } else {%>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">To Buy</button>
+            <% } %> 
+
+            <a href="/api/v1/books" class="btn btn-outline-success">Go Back</a>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Book Owner : <%= book.postedBy.firstName %> <%= book.postedBy.lastName %></p>
+                    <p>Phone: <%= book.postedBy.phone %></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    <%}
+    else {%>
+        <div>
+            <h2>No Book Found!</h2>
+            <a href="/api/v1/books" class="btn btn-success">Go Back</a>
+        </div>
+        
+    <% } %> 
+</div>

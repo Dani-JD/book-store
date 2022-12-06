@@ -1,0 +1,106 @@
+<form class="row row-cols-md-2 g-3" action="/api/v1/books/<%= book._id %>/?_method=PATCH" method="post" enctype="multipart/form-data">
+    <div class="col-md-6">
+        <span class="badge bg-secondary d-block p-2 fs-5 mb-2">Book Info</span>
+        <div class="mb-3">
+            <label for="bookTitle" class="form-label">Book Title</label>
+            <input type="text" name="title" class="form-control" id="bookTitle" value="<%= book.title %> " placeholder="Enter Book Title" required>
+        </div>
+        <div class="mb-3">
+            <label for="catagory" class="form-label">Book Catagory</label>
+            <select class="form-select form-select-md mb-3" name="catagory" id="catagory" required aria-label=".form-select-lg catagory">
+                <option selected>Select Catagory</option>
+                <optgroup label="Fiction">
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Contemporary">Contemporary</option>
+                    <option value="Dystopian">Dystopian</option>
+                    <option value="Mystery">Mystery</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Paranormal">Paranormal</option>
+                    <option value="Historical">Historical</option>
+                    <option value="Childrens">Childrens</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                </optgroup>
+                <optgroup label="Non Fiction">              
+                    <option value="Memoir">Memoir</option>
+                    <option value="Cookbook">Cookbook</option>
+                    <option value="Art">Art</option>
+                    <option value="Self-help">Self-help</option>
+                    <option value="Development">Development</option>
+                    <option value="Motivational">Motivational</option>
+                    <option value="Health">Health</option>
+                    <option value="Biography">Biography</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Historical">Historical</option>
+                    <option value="Guide / How-to">Guide / How-to</option>
+                    <option value="Families & Relationships">Families & Relationships</option>
+                    <option value="Humor">Humor</option>
+                </optgroup>
+            </select>
+            <div class="mb-3">
+                <label for="author" class="form-label">Book Author</label>
+                <input type="text" name="author" class="form-control" value="<%= book.author %> " id="author" required placeholder="Enter Book Author">
+            </div>
+            <div class="row">
+                <div class="col-md-6 ">
+                    <label for="language" class="form-label">Language</label>
+                    <select class="form-select form-select-md mb-3" id="language" required name="language" aria-label=".form-select-lg catagory">
+                        <option selected>Select Language</option>
+                        <option value="amharic">Amharic</option>
+                        <option value="affan Oromo">Affan Oromo</option>
+                        <option value="english">English</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="pages" class="form-label">No of Pages</label>
+                    <input type="number" min="0" max="20000" name="pages" required class="form-control" id="pages" placeholder="Enter No of Pages">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" name="price" required class="form-control" id="pages" placeholder="Enter Price">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="publisher" class="form-label">Publisher</label>
+                    <input type="text" min="0" max="20000" value="<%= book.publisher %> " name="publisher" class="form-control" required id="publisher" placeholder="Enter Publisher">
+                </div>
+                <div class="col-md-6">
+                    <label for="publishedDate" class="form-label">Published Date</label>
+                    <input type="date" required value="<%=book.publishedDate.getFullYear()%>-<%=String(book.publishedDate.getMonth() + 1).padStart(2, '0')%>-<%=String(new Date().getDate()).padStart(2, '0') %>" value1="<%=book.publishedDate.getFullYear()%>-<%=String(new Date().getMonth() + 1).padStart(2, '0')%>-<%=String(new Date().getDate()).padStart(2, '0') %> " max="<%=new Date().getFullYear()%>-<%=String(new Date().getMonth() + 1).padStart(2, '0')%>-<%=String(new Date().getDate()).padStart(2, '0') %>" name="publishedDate" class="form-control" id="publishedDate" placeholder="Enter Published Date">
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Book description</label>
+                <textarea class="form-control" name="description" id="description" rows="2" required><%= book.description %></textarea>
+            </div>
+            <div class="mb-2">
+                <label for="summary" class="form-label">Book Summary</label>
+                <textarea class="form-control" name="summary" id="summary" rows="4" required><%= book.summary %></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <span class="badge bg-secondary d-block p-2 fs-5 mb-2">Cover Image</span>
+        <div class="mb-3">
+            <label for="file" class="form-label">Insert Cover Image</label>
+            <input type="file"  accept="image/*" name="coverImage" class="form-control" id="file" required onchange="loadFile(event)">
+            
+            <!-- <label for="file" class="border border-success fa fa-upload p-2" style="cursor: pointer;">Upload Image</label></p> -->
+            
+            <div class="image-view" id="image-view" style="display: flex;">
+                <img id="output" width="300" src="/img/book-cover-template.jpg" />
+            </div>
+            <!-- <input type="file" name="coverImage" class="filepond" id="file"> -->
+        </div>
+    </div>
+    <div class="col-md-6 row ms-0">    
+        <button class="btn btn-success  w-100 mb-2" type="submit">Update Info</button> 
+        <button class="btn btn-secondary  mb-2" type="reset">Cancel</button>
+    </div>
+</form>

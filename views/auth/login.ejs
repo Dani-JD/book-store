@@ -1,0 +1,24 @@
+<section class="row cols-2 mt-4">
+    <div class="col-sm">
+        <%- include('../partials/messages.ejs')%>
+    </div>
+    <form action="/api/v1/auth/login" method="post" class="col-lg-5 col-sm mb-4">
+        <div class="divider d-flex align-items-center my-1">
+            <p class="text-center fw-bold  mb-0 fs-3">Login</p>
+          </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" placeholder="Enter Email Address">
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Enter password" />
+        </div>
+        <button class="btn btn-info p-2" style="width: 100%;">Login</button>
+        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/api/v1/auth/register"
+            class="link-danger">Register</a></p>
+        
+    </form>
+</section>

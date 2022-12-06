@@ -1,0 +1,31 @@
+<% if(logout_message !='' ){%>
+<div class="alert alert-info alert-dismissible w-75">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Success!</strong>
+    <%= logout_message %>.
+</div>
+<%}%>
+
+<% if(register_message !='' ){%>
+<div class="alert alert-success alert-dismissible w-75">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Success!</strong>
+<%= register_message %>.
+</div>
+<%}%>
+
+<% if(login_error !='' ){%>
+<div class="alert alert-danger alert-dismissible w-75">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Error!</strong>
+<%= login_error %>.
+</div>
+<%}%>
+
+<% if(messages.error){%>
+    <div class="alert alert-warning alert-dismissible fade show w-75" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Error!</strong>
+        <%= messages.error %>.
+    </div>
+<%}%>

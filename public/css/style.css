@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+}
+.navbar{
+    margin-top: 0;
+    background-color: antiquewhite;
+}
+.filepond{
+    max-width: 300px;
+    height: 500px;
+}
+.image-view{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    max-width: 305px;
+    overflow: hidden;
+    border: 2px solid rgb(105, 179, 105);
+}
+
+@media (max-width: 768px) {
+    .book-view {
+        justify-content: center;
+    }
+    .buttons{
+      margin-top: 10px;
+    }
+}

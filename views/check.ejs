@@ -1,0 +1,13 @@
+<h2>Form</h2>
+
+
+<form action="/api/v1/books/a" method="post" enctype="multipart/form-data">
+    <input type="text" name="" id="">
+    <!-- <input type="file" name="coverImage" id="image" accept="image/*"> -->
+    <input type="file"  accept="image/*" name="coverImage" id="file"  onchange="loadFile(event)" style="display: none;">
+    <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+    <input type="submit" value="Ok">
+</form>
+<div class="image-view" id="image-view">
+    <img id="output" width="300" src="/img/book-cover-template.jpg" />
+</div>
